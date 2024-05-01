@@ -6,7 +6,7 @@ from pytgcalls import PyTgCalls
 from pytgcalls.types import MediaStream
 from pytgcalls.types import Update
 
-CHANNEL_ID = -1001952511944
+CHANNEL_ID = -1001996363416
 app = Client(
     'py-tgcalls',
     api_id=21309577,
@@ -15,7 +15,7 @@ app = Client(
 call_py = PyTgCalls(app)
 call_py.start()
 
-CHANNEL_ID = -1001952511944
+CHANNEL_ID = -1001996363416
 
 @app.on_message(filters.command('live') & filters.incoming & ~filters.user(5218610039))
 async def stream(client, m: Message):
