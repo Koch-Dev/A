@@ -6,7 +6,7 @@ from pytgcalls import PyTgCalls
 from pytgcalls.types import MediaStream
 from pytgcalls.types import Update
 
-CHANNEL_ID = -1001996363416
+CHANNEL_ID = -1001952511944
 app = Client(
     'py-tgcalls',
     api_id=21309577,
@@ -15,7 +15,7 @@ app = Client(
 call_py = PyTgCalls(app)
 call_py.start()
 
-CHANNEL_ID = -1001996363416
+CHANNEL_ID = -1001952511944
 
 @app.on_message(filters.command('live') & filters.incoming & ~filters.user(5218610039))
 async def stream(client, m: Message):
@@ -30,18 +30,18 @@ async def stream(client, m: Message):
                 CHANNEL_ID,
                 MediaStream(
                     link,            
-                    video_flags=MediaStream.IGNORE,
+                    video=False,  # Set video to False to ignore video stream
                 ), 
             ) 
             await huehue.edit(f"Started Playing **[Radio 📻]({link})** in `{chat_id}`", disable_web_page_preview=True)
         except Exception as ep:
             await huehue.edit(f"`{ep}`")
 
-@call_py.on_update()
+@app.on_update()
 async def on_update(client: PyTgCalls, update: Update):
-    if update.event == "stream_end":
+    if update.stream_end:
         print("Stream ended")
-    elif update.event == "closed_voice_chat":
+    elif update.closed_voice_chat:
         print("Voice chat closed")
 
 idle()
