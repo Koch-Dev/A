@@ -37,11 +37,6 @@ async def stream(client, m: Message):
         except Exception as ep:
             await huehue.edit(f"`{ep}`")
 
-@app.on_update()
-async def on_update(client: PyTgCalls, update: Update):
-    if update.stream_end:
-        print("Stream ended")
-    elif update.closed_voice_chat:
-        print("Voice chat closed")
+
 
 idle()
